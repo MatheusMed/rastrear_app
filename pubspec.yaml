@@ -1,0 +1,24 @@
+name: rastrear_app
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.10.7
+
+dependencies:
+  flutter:
+    sdk: flutter
+  dio: ^5.9.2
+  sqflite: ^2.4.2
+  path: ^1.9.1
+  get_it: ^9.2.1
+  intl: ^0.18.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
