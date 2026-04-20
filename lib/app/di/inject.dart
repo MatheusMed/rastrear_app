@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:rastrear_app/app/controllers/restreamento_controller.dart';
 import 'package:rastrear_app/app/repositories/i_rastreamento_repo.dart';
@@ -14,10 +15,9 @@ class Inject {
     inject.registerLazySingleton<Dio>(
       () => Dio(
         BaseOptions(
-          baseUrl: 'https://seurastreio.com.br/api/public',
+          baseUrl: dotenv.env['API_BASE_URL']!,
           headers: {
-            'Authorization':
-                'Bearer sr_live_0GeGE362-XkYHw48QivA9ramme_4RPR9TR3CMW5JJ_0',
+            'Authorization': 'Bearer ${dotenv.env['API_TOKEN']}',
             'Content-Type': 'application/json',
           },
           connectTimeout: const Duration(seconds: 15),
