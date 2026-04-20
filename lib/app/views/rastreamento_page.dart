@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:intl/intl.dart';
 import 'package:rastrear_app/app/controllers/restreamento_controller.dart';
 import 'package:rastrear_app/app/models/rastreamento_model.dart';
+import 'package:rastrear_app/app/views/components/resultado_component.dart';
 
 class RastreamentoPage extends StatefulWidget {
   const RastreamentoPage({super.key});
@@ -73,7 +73,7 @@ class _RastreamentoPageState extends State<RastreamentoPage> {
                     return Center(child: Text(data.message));
                   }
 
-                  return _resultado(data);
+                  return ResultadoComponent(data: data);
                 },
               ),
             ),
@@ -121,67 +121,6 @@ class _RastreamentoPageState extends State<RastreamentoPage> {
                   : const Text("Buscar", style: TextStyle(color: Colors.white)),
             ),
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget _resultado(RastreamentoModel data) {
-    final evento = data.eventoMaisRecente;
-
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(22),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            data.codigo,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-
-          const SizedBox(height: 8),
-
-          Text(
-            data.status,
-            style: const TextStyle(
-              color: Colors.blue,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-
-          const Divider(height: 30),
-
-          _info("Descrição", evento.descricao),
-          _info("Detalhe", evento.detalhe),
-          _info("Local", evento.local),
-          _info("Data", DateFormat('dd/MM/yyyy HH:mm').format(evento.data)),
-
-          const Spacer(),
-
-          if (data.linkDetalhesCompletos.isNotEmpty)
-            TextButton(
-              onPressed: () {},
-              child: const Text("Ver detalhes completos"),
-            ),
-        ],
-      ),
-    );
-  }
-
-  Widget _info(String titulo, String valor) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
-      child: Row(
-        children: [
-          Text(
-            "$titulo: ",
-            style: const TextStyle(fontWeight: FontWeight.bold),
-          ),
-          Expanded(child: Text(valor)),
         ],
       ),
     );
